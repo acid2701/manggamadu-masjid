@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:ital,wght@0,400;0,600;1,400&display=swap');
 @import 'tailwindcss';
 @import '../../vendor/livewire/flux/dist/flux.css';
 
@@ -9,8 +10,93 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Inter', 'Euclid Circular A', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
+    /* Custom Colors from DESIGN.md */
+    --color-brand-green: #00ed64;
+    --color-brand-green-dark: #00684a;
+    --color-brand-green-mid: #00a35c;
+    --color-brand-green-soft: #c3f0d2;
+
+    --color-brand-teal-deep: #001e2b;
+    --color-brand-teal: #003d4f;
+    --color-brand-teal-mid: #00684a;
+
+    --color-accent-purple: #7b3ff2;
+    --color-accent-orange: #fa6e39;
+    --color-accent-pink: #f06bb8;
+    --color-accent-blue: #3d4f9f;
+
+    --color-canvas: #ffffff;
+    --color-canvas-dark: #001e2b;
+    --color-surface: #f9fbfa;
+    --color-surface-soft: #f4f7f6;
+    --color-surface-feature: #e3fcef;
+
+    --color-hairline: #e1e5e8;
+    --color-hairline-soft: #eceff1;
+    --color-hairline-strong: #c1ccd6;
+    --color-hairline-dark: #1c2d38;
+
+    --color-ink: #001e2b;
+    --color-charcoal: #1c2d38;
+    --color-slate: #3d4f5b;
+    --color-steel: #5c6c7a;
+    --color-stone: #7c8c9a;
+    --color-muted: #a8b3bc;
+
+    --color-on-dark: #ffffff;
+    --color-on-dark-muted: #a8b3bc;
+
+    --color-semantic-warning-bg: #fff8e0;
+    --color-semantic-warning-text: #946f3f;
+
+    /* Spacing Scale */
+    --spacing-xxs: 4px;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 20px;
+    --spacing-xl: 24px;
+    --spacing-xxl: 32px;
+    --spacing-xxxl: 40px;
+    --spacing-section-sm: 48px;
+    --spacing-section: 64px;
+    --spacing-section-lg: 96px;
+    --spacing-hero: 120px;
+
+    /* Border Radius Scale */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-xxl: 24px;
+    --radius-full: 9999px;
+
+    /* Shadows (4 elevation levels) */
+    --shadow-level-0: none;
+    --shadow-level-1: 0 1px 2px 0 rgba(0, 30, 43, 0.04);
+    --shadow-level-2: 0 4px 12px 0 rgba(0, 30, 43, 0.08);
+    --shadow-level-3: 0 12px 24px -4px rgba(0, 30, 43, 0.12);
+    --shadow-level-4: 0 16px 48px -8px rgba(0, 30, 43, 0.16);
+
+    /* Typography Font Sizes */
+    --text-hero-display: 72px;
+    --text-display-lg: 56px;
+    --text-heading-1: 48px;
+    --text-heading-2: 36px;
+    --text-heading-3: 28px;
+    --text-heading-4: 22px;
+    --text-heading-5: 18px;
+    --text-subtitle: 18px;
+    --text-body-md: 16px;
+    --text-body-sm: 14px;
+    --text-micro: 12px;
+    --text-micro-uppercase: 11px;
+
+    /* Base zinc variables for fallback */
     --color-zinc-50: #fafafa;
     --color-zinc-100: #f5f5f5;
     --color-zinc-200: #e5e5e5;
@@ -23,27 +109,83 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
+    --color-accent: var(--color-brand-green-dark);
+    --color-accent-content: var(--color-brand-green-dark);
     --color-accent-foreground: var(--color-white);
 }
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
+        --color-accent: var(--color-brand-green);
+        --color-accent-content: var(--color-brand-green);
+        --color-accent-foreground: var(--color-brand-teal-deep);
     }
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,
     ::backdrop,
     ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
+        border-color: var(--color-hairline, currentColor);
+    }
+    
+    body {
+        font-family: var(--font-sans);
+        color: var(--color-ink);
+        background-color: var(--color-canvas);
+    }
+}
+
+/* Custom CSS Utility Classes for the Design System components */
+@layer utilities {
+    .btn-primary {
+        background-color: var(--color-brand-green);
+        color: var(--color-brand-teal-deep);
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: var(--text-body-sm);
+        border-radius: var(--radius-full);
+        padding: 10px 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 150ms ease-in-out;
+        cursor: pointer;
+    }
+    .btn-primary:active {
+        background-color: #008c34; /* primary-pressed */
+    }
+    .btn-primary[disabled],
+    .btn-primary:disabled {
+        background-color: var(--color-hairline);
+        color: var(--color-muted);
+        cursor: not-allowed;
+    }
+    
+    .btn-secondary {
+        background-color: transparent;
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: var(--text-body-sm);
+        border: 1px solid var(--color-hairline-strong);
+        border-radius: var(--radius-full);
+        padding: 10px 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 150ms ease-in-out;
+        cursor: pointer;
+    }
+    
+    .card-base {
+        background-color: var(--color-canvas);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+        border: 1px solid var(--color-hairline);
+        box-shadow: var(--shadow-level-1);
     }
 }
 
@@ -52,7 +194,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -60,7 +202,3 @@ textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
-
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
