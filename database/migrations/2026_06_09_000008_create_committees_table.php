@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('committees', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name', 100);
             $table->string('position', 100)->comment('Ketua DKM, Sekretaris, dst');
             $table->string('photo')->nullable();

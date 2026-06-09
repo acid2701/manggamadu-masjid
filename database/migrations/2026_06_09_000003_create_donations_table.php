@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('donations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('donation_category_id')->constrained('donation_categories');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('donation_category_id')->constrained('donation_categories');
             $table->string('donor_name', 100)->nullable()->comment('NULL = Anonim');
             $table->decimal('amount', 15, 2);
             $table->string('proof_image')->nullable()->comment('Path bukti transfer');
             $table->text('message')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('rejection_note')->nullable();
-            $table->foreignId('approved_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignUuid('approved_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamp('approved_at')->nullable();
             $table->timestamps();
 

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('content');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('category', ['berita', 'pengumuman', 'kajian'])->default('berita');
             $table->enum('status', ['draft', 'published'])->default('draft');
             $table->timestamp('published_at')->nullable();
-            $table->foreignId('author_id')->constrained('users');
+            $table->foreignUuid('author_id')->constrained('users');
             $table->timestamps();
 
             $table->index('status');
