@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('finance_records', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->enum('type', ['income', 'expense']);
             $table->string('category', 100)->comment('Donasi, Operasional, Renovasi, dll');
             $table->decimal('amount', 15, 2);
             $table->enum('source', ['donation', 'manual'])->default('manual');
-            $table->foreignId('donation_id')->nullable()->constrained('donations')->nullOnDelete();
+            $table->foreignUuid('donation_id')->nullable()->constrained('donations')->nullOnDelete();
             $table->text('description')->nullable();
             $table->date('transaction_date');
-            $table->foreignId('recorded_by')->constrained('users');
+            $table->foreignUuid('recorded_by')->constrained('users');
             $table->timestamps();
 
             $table->index('type');
